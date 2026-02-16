@@ -1,6 +1,11 @@
 # Node
 node_modules/
 
+# WhatsApp Web JS (IMPORTANT)
+.wwebjs_auth/
+.wwebjs_auth_session/
+.wwebjs_cache/
+
 # Python
 __pycache__/
 *.pyc
