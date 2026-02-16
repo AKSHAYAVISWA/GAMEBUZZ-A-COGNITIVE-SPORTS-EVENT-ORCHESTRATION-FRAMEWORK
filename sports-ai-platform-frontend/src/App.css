@@ -1,0 +1,591 @@
+/* Premium Sports App Styles - Professional & Modern (Sleek White & Red Theme) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+:root {
+  /* RED THEME COLORS */
+  --primary-color: #E53935; /* Bright Red */
+  --secondary-color: #FF3D00; /* Orange-Red Accent */
+  --primary-gradient: linear-gradient(135deg, #E53935 0%, #FF3D00 100%); /* Red to Orange-Red */
+  --secondary-gradient: linear-gradient(135deg, #FF9800 0%, #FFC107 100%); /* Orange to Yellow-Orange (for Danger/Contrast) */
+  --accent-gradient: linear-gradient(135deg, #E53935 0%, #FFCCBC 100%); /* Red to Light Pink */
+  
+  /* LIGHT BASE COLORS (Reversed Luminosity) */
+  --light-bg: #f8f9fa; /* Very Light Gray/White Base */
+  --card-bg: rgba(255, 255, 255, 0.7); /* Light Glass Card (White background) */
+  --card-border: rgba(0, 0, 0, 0.1);
+  --text-primary: #1a1a1a; /* Dark text */
+  --text-secondary: rgba(0, 0, 0, 0.7); /* Lighter dark text */
+  
+  /* SHADOWS - Darker for visibility on a light background */
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 40px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+  --shadow-glow: 0 0 40px rgba(229, 57, 53, 0.3); /* Red Glow */
+}
+
+/* FIX: Added the missing '*' for the universal selector */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* Light gray background with a subtle gradient */
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f5 100%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+/* Animated Background Effect - Light Base with Subtle Red Hues */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Very subtle light red/orange elements */
+  background: radial-gradient(circle at 20% 50%, rgba(229, 57, 53, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(255, 152, 0, 0.03) 0%, transparent 50%),
+              radial-gradient(circle at 40% 20%, rgba(255, 61, 0, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+  animation: bgShift 20s ease-in-out infinite;
+}
+@keyframes bgShift {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+/* Navigation Styles */
+nav {
+  background: rgba(255, 255, 255, 0.9); /* Light, almost white background */
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.8rem 3rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+nav::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--primary-gradient); /* RED accent line */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+nav:hover::after {
+  opacity: 1;
+}
+nav a {
+  color: var(--text-secondary); /* Dark text on light nav */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.875rem 1.75rem;
+  margin: 0 0.5rem;
+  border-radius: 12px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.3px;
+}
+nav a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-gradient); /* RED highlight on hover */
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+  opacity: 0.1;
+}
+nav a:hover::before {
+  left: 0;
+}
+nav a:hover {
+  color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(229, 57, 53, 0.1); /* Subtle Red hover shadow */
+}
+
+/* Page Container */
+div[style="padding"] {
+  padding: 3rem 2rem !important;
+  margin-top: 100px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 1;
+}
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  /* Dark text with Red/Orange gradient for effect */
+  background: linear-gradient(135deg, #1a1a1a 0%, var(--primary-color) 50%, var(--secondary-color) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  position: relative;
+}
+h2 {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: var(--primary-gradient); /* RED highlight under H2 */
+  border-radius: 2px;
+  box-shadow: 0 0 15px rgba(229, 57, 53, 0.4);
+}
+h3 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+h4 {
+  font-size: 1.5rem;
+  margin: 2rem 0 1rem 0;
+}
+/* Form Styles */
+form {
+  background: var(--card-bg); /* Light glass background */
+  backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 3rem;
+  margin: 2.5rem auto;
+  max-width: 650px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+form::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--primary-gradient); 
+  border-radius: 24px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+form:hover::before {
+  opacity: 0.05; /* Very subtle glow on light background */
+}
+label {
+  display: block;
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+input, select, textarea {
+  width: 100%;
+  padding: 1.125rem 1.25rem;
+  margin: 0.5rem 0 1.75rem 0;
+  border: 1.5px solid rgba(0, 0, 0, 0.15);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.8); /* Near-white input background */
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: inherit;
+  font-weight: 400;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary-color); 
+  box-shadow: 0 0 0 4px rgba(229, 57, 53, 0.1), 0 8px 25px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  transform: translateY(-2px);
+}
+input::placeholder, textarea::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: 400;
+}
+/* File Input Styles */
+input[type="file"] {
+  border: 2px dashed rgba(229, 57, 53, 0.3); 
+  background: rgba(229, 57, 53, 0.05);
+  cursor: pointer;
+  text-align: center;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+input[type="file"]:hover {
+  border-color: var(--primary-color);
+  background: rgba(229, 57, 53, 0.1);
+  transform: scale(1.01);
+}
+/* Button Styles */
+button {
+  padding: 1.125rem 2.5rem;
+  border: none;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0.5rem;
+  font-family: inherit;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  color: white; /* Default to white text for gradient buttons */
+}
+button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2); 
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+/* Primary Button (Submit/Default) */
+button[type="submit"],
+button:not([type]):not(.btn-secondary):not(.btn-danger) {
+  background: var(--primary-gradient); 
+  box-shadow: 0 10px 30px rgba(229, 57, 53, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+button[type="submit"]:hover,
+button:not([type]):not(.btn-secondary):not(.btn-danger):hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 15px 45px rgba(229, 57, 53, 0.5), var(--shadow-glow);
+}
+button[type="submit"]:active,
+button:not([type]):not(.btn-secondary):not(.btn-danger):active {
+  transform: translateY(-2px) scale(0.98);
+}
+/* Secondary Button */
+button[type="button"] {
+  background: rgba(0, 0, 0, 0.05); /* Very light secondary button */
+  color: var(--text-primary); /* Dark text on light button */
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  box-shadow: var(--shadow-sm);
+}
+button[type="button"]:hover {
+  background: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Danger Button */
+.btn-danger {
+  background: var(--secondary-gradient) !important; 
+  color: var(--text-primary) !important; /* Dark text on bright background */
+  font-weight: 800 !important;
+  box-shadow: 0 8px 25px rgba(255, 152, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.btn-danger:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 35px rgba(255, 152, 0, 0.4);
+}
+
+/* Event Cards */
+div[style="border: '1px solid black'"],
+div[style*="border"] {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%) !important;
+  backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  border-radius: 24px !important;
+  padding: 2.5rem !important;
+  margin: 2rem 0 !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+div[style*="border: '1px solid black'"]::before,
+div[style*="border"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(229, 57, 53, 0.1), transparent); /* Subtle RED shimmer effect */
+  transition: left 0.6s ease;
+}
+div[style*="border: '1px solid black'"]:hover::before,
+div[style*="border"]:hover::before {
+  left: 100%;
+}
+div[style*="border: '1px solid black'"]:hover,
+div[style*="border"]:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(229, 57, 53, 0.3) !important; 
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.8) 100%) !important;
+}
+
+/* Dashboard Role Badge */
+p:contains("Logged in as:") {
+  background: rgba(229, 57, 53, 0.1); /* Very light red background */
+  padding: 1.25rem;
+  border-radius: 16px;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  border: 1px solid rgba(229, 57, 53, 0.3); 
+  box-shadow: 0 8px 25px rgba(229, 57, 53, 0.1);
+  letter-spacing: 0.5px;
+  font-size: 1.05rem;
+}
+
+/* Chatbot Styles */
+div[style="height: '200px'"] {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.2) !important;
+  border-radius: 16px !important;
+  padding: 1.25rem !important;
+  backdrop-filter: blur(10px);
+}
+div[style*="textAlign: msg.sender === 'you' ? 'right' : 'left'"] {
+  padding: 0.875rem 1.25rem;
+  margin: 0.75rem 0;
+  border-radius: 20px;
+  max-width: 75%;
+  box-shadow: var(--shadow-sm);
+  font-weight: 500;
+  line-height: 1.5;
+}
+/* User messages */
+div[style="right"] {
+  background: var(--primary-gradient); 
+  color: white;
+  margin-left: auto;
+  box-shadow: 0 6px 20px rgba(229, 57, 53, 0.3);
+}
+/* Bot messages */
+div[style="left"] {
+  background: #eeeeee; /* Light gray for bot messages */
+  color: var(--text-primary);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Image Styles */
+img {
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+img:hover {
+  transform: scale(1.03) translateY(-5px);
+  box-shadow: var(--shadow-lg), 0 0 15px rgba(255, 61, 0, 0.2);
+  border-color: rgba(255, 61, 0, 0.3);
+}
+
+/* Modal Styles */
+div[style="position: fixed"] {
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(15px);
+}
+
+/* Links */
+a {
+  color: var(--primary-color); 
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  position: relative;
+}
+a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-gradient); 
+  transition: width 0.3s ease;
+}
+a:hover::after {
+  width: 100%;
+}
+a:hover {
+  color: var(--secondary-color);
+  text-shadow: 0 0 5px rgba(229, 57, 53, 0.2);
+}
+
+/* Loading and Error States */
+p:contains("Loading"),
+p:contains("Error"),
+p:contains("No events") {
+  text-align: center;
+  padding: 2.5rem;
+  background: rgba(0, 0, 0, 0.05); /* Light gray background */
+  border-radius: 16px;
+  margin: 2.5rem 0;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+p[style*="color: 'red'"] {
+  background: rgba(255, 61, 0, 0.1) !important; 
+  border: 1.5px solid rgba(255, 61, 0, 0.3);
+  padding: 1.25rem !important;
+  border-radius: 12px !important;
+  color: #D32F2F !important; /* Darker red text for visibility */
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(255, 61, 0, 0.1);
+}
+
+/* Team Member Cards */
+div[style="border: '1px solid gray'"] {
+  background: rgba(0, 0, 0, 0.05) !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.25) !important;
+  border-radius: 16px !important;
+  padding: 2rem !important;
+  margin: 1.5rem 0 !important;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+div[style*="border: '1px solid gray'"]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(229, 57, 53, 0.1);
+  border-color: rgba(229, 57, 53, 0.3) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  nav {
+    padding: 0.6rem 1.5rem;
+    text-align: center;
+  }
+  
+  nav a {
+    display: inline-block;
+    margin: 0.25rem;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.85rem;
+  }
+  
+  div[style="padding"] {
+    padding: 1.5rem !important;
+    margin-top: 140px;
+  }
+  
+  form {
+    padding: 2rem;
+    margin: 1.5rem auto;
+  }
+  
+  h2 {
+    font-size: 2.25rem;
+  }
+  
+  h3 {
+    font-size: 1.75rem;
+  }
+  
+  button {
+    padding: 1rem 2rem;
+    font-size: 0.875rem;
+  }
+}
+/* Animation for page load */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+div[style*="padding"] {
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+div[style*="border"] {
+  animation: slideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+div[style*="border"]:nth-child(1) { animation-delay: 0.1s; }
+div[style*="border"]:nth-child(2) { animation-delay: 0.2s; }
+div[style*="border"]:nth-child(3) { animation-delay: 0.3s; }
+div[style*="border"]:nth-child(4) { animation-delay: 0.4s; }
+/* Scrollbar Styles - Red/Orange Thumb */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-gradient);
+  border-radius: 5px;
+  border: 2px solid var(--light-bg); /* Use light background color for border */
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #FF6F61 0%, #FF9800 100%);
+  box-shadow: 0 0 10px rgba(229, 57, 53, 0.3);
+}
+/* Selection Styles - Red */
+::selection {
+  background: rgba(229, 57, 53, 0.4);
+  color: white;
+}
+::-moz-selection {
+  background: rgba(229, 57, 53, 0.4);
+  color: white;
+}
+/* Focus Visible - Red */
+*:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
